@@ -1,0 +1,42 @@
+Karat interview 5 System design questions
+
+1) Advantages and Disadvantages of Running System on Multiple Servers vs single server(Music App)
+   Advantages:
+   Scalability: Can handle more users/requests by distributing load.
+   Fault Tolerance: One server fails → others continue serving.
+   Geographic Distribution: Reduced latency by serving users closer to edge nodes.
+   Separation of Concerns: Isolate services (e.g., auth, media delivery, metadata).
+
+   Disadvantages:
+   Consistency Management: Keeping data (e.g., playlists, user prefs) synced.
+   Increased Complexity: Requires load balancers, service discovery, monitoring.
+   Cost Overhead: More infra = more cost.
+   Deployment Coordination: Rollouts across multiple nodes may cause partial failures.
+
+2) Estimate Data Storage Cost for Logging for 1 Year
+    avg log size × events/sec × 60 × 60 × 24 × 365
+    Should have talked about the below factors to consider as well
+    Retention policy (e.g., hot vs cold storage).
+    Compression ratio (often 4–5x with gzip).
+    Storage tier (e.g., AWS S3 vs EBS vs Glacier).
+    Redundancy (multi-AZ or cross-region).
+
+3) Arcade Game Sensor Expansion to 125,000 Machines
+   Scalability: Central server may get flooded. Need edge processing or rate-limiting.
+   Connectivity: Machines need reliable, possibly offline-tolerant sync (store-and-forward).
+   Security: Cards should be encrypted; tamper protection for devices.
+   Firmware Updates: How to push fixes to 125K sensors?
+   Data Consistency: Ensure payment updates are atomic.
+   Latency: Fast enough response to avoid poor user experience.
+   Monitoring: Track failures, fraud attempts, or sensor errors across all locations.
+
+4) Password Validation: What is the issue with below password design
+English only words are rejected
+Current requirement -
+    a) minimum 8 - 16 characters
+    b) contains one Uppercase, one lowercase, one symbol
+Answer as discussed - suggested to remove 8 - 16 char requirement which will allow to add variety
+
+5) File Deduplication via Size Check → Byte Check → Symlink is this design proper?
+
+
